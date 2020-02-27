@@ -1,11 +1,11 @@
 import {SET_ALL_POSTS} from '../Actions/postAction'
 
-export function getAllPostsReducer(state={}, action) {
+export function getAllPostsReducer(state={data:[]}, action) {
     switch(action.type) {
         case SET_ALL_POSTS:
             return {
                 ...state,
-                data: action.payload
+                posts: action.payload
             }
 
         default:

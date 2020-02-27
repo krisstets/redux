@@ -1,12 +1,12 @@
 import React from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import './style.css';
-import {PostsContext} from '../Context/postContext';
+//import {PostsContext} from '../Context/postContext';
 
 
 export default class PostInfo extends React.Component {
 
-    static contextType = PostsContext;
+    //static contextType = PostsContext;
 
     constructor(props) {
         super(props);
@@ -18,7 +18,7 @@ export default class PostInfo extends React.Component {
     }
 
     async componentDidMount() {
-        let post = this.context.activePost;
+      /*  let post = this.context.activePost;
         const matchParams = this.props.match.params;
 
         if(!this.state.post && post) {
@@ -39,10 +39,10 @@ export default class PostInfo extends React.Component {
             })
         } catch(error) {
             throw new Error(error); 
-        }
+        }*/
     }
 
-    render() {
+    /*render() {
         let { isLoaded } = this.state;
         if(!isLoaded) {
             return<div>Loading..</div>
@@ -65,5 +65,5 @@ export default class PostInfo extends React.Component {
                 </div>
              )
         }
-    }
+    }*/
 }

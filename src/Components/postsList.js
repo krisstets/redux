@@ -1,13 +1,11 @@
-import './style.css';
 import React from 'react';
 import service from '../Service/service';
-import {store} from '../Store/ConfigureStore';
-import {getAllPosts} from '../Service'
+import { getAllPosts } from '../Actions/postAction';
+import { connect } from "react-redux";
 
 
+class PostsList extends React.Component {
 
-export default class PostsList extends React.Component {
-    
     constructor(props) {
         super(props);
         this.state = {
@@ -15,29 +13,16 @@ export default class PostsList extends React.Component {
         };
     }
 
-   async componentDidMount() {
-       /* if (this.state.posts.length === 0 && this.context.posts.length) {
-            this.setState({
-                posts: this.context.posts,
-                isLoaded: true
-            });
-        } else if(!this.context.posts.length){ 
-            let posts = null;
-            posts = await axios.get(`https://jsonplaceholder.typicode.com/posts`)
-            
-        }*/
-
+    async componentDidMount() {
+    
         let posts = null;
         posts = await service.getAllPosts();
-        store.dispatch(getAllPosts(posts));
-        this.setState({ isLoaded: true});
-        console.log(store.getState().data);
+        console.log(posts);
+        this.props.getPosts(posts);
+        this.setState({ isLoaded: true });
     }
 
-    
-
-
-/*    render() {
+    render() {
         let { isLoaded } = this.state;
         if (!isLoaded) {
             return <div>Loading..</div>;
@@ -52,9 +37,9 @@ export default class PostsList extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.state.posts.map(post => {
-                        const { id, userId, title, activePost} = post;
-                        return (<tr key={id} onClick={e => { this.context.updatePost(activePost); this.props.history.push(`/post-info/${id}/${userId}`); }}>
+                    {this.props.posts.map(post => {
+                        const { id, userId, title } = post;
+                        return (<tr key={id}>
                             <td>{id}</td>
                             <td>{userId}</td>
                             <td className='post-title'>{title}</td>
@@ -62,7 +47,17 @@ export default class PostsList extends React.Component {
                     })}
                 </tbody>
             </table>);
-        
         }
-    }*/
+    }
 }
+
+const mapStateToProps = state => ({
+    posts: state.postsRequestResults.posts
+});
+const mapDispatchToProps = dispatch => ({
+    getPosts: (posts) => {
+        dispatch(getAllPosts(posts));
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostsList);
