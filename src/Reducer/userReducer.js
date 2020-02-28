@@ -1,15 +1,15 @@
-const  SET_ALL_USERS = 'SET_ALL_USERS';
+import {SET_ALL_USERS} from '../Actions/userAction'
 
-export const initialState = {
-  users: []
-};
+export function getAllUsersReducer(state={data:[]}, action) {
+    switch(action.type) {
+        case SET_ALL_USERS:
+            return {
+                ...state,
+                posts: action.payload
+            }
 
-export const getAllUsersReducer = (state, action) => {
-  switch (action.type) {
-    case SET_ALL_USERS:
-      return { ...state, posts: action.payload };
-
-    default:
-      return state;
-  }
-};
+        default:
+           
+            return state;
+    }
+}

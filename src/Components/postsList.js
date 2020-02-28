@@ -2,6 +2,8 @@ import React from 'react';
 import service from '../Service/service';
 import { getAllPosts } from '../Actions/postAction';
 import { connect } from "react-redux";
+import {store} from '../index'
+
 
 
 class PostsList extends React.Component {
@@ -14,12 +16,10 @@ class PostsList extends React.Component {
     }
 
     async componentDidMount() {
-    
-        let posts = null;
-        posts = await service.getAllPosts();
-        console.log(posts);
+        let posts = await service.getAllPosts();
         this.props.getPosts(posts);
         this.setState({ isLoaded: true });
+        console.log(store.getState())
     }
 
     render() {
@@ -39,7 +39,7 @@ class PostsList extends React.Component {
                 <tbody>
                     {this.props.posts.map(post => {
                         const { id, userId, title } = post;
-                        return (<tr key={id}>
+                        return (<tr key={id} onClick={e => { this.props.history.push(`/post-info/${id}/${userId}`); }}>
                             <td>{id}</td>
                             <td>{userId}</td>
                             <td className='post-title'>{title}</td>
