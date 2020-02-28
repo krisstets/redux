@@ -1,6 +1,6 @@
 import React from 'react';
 import service from '../Service/service';
-import { getAllPosts } from '../Actions/postAction';
+import { getAllPosts, getActivePost } from '../Actions/postAction';
 import { connect } from "react-redux";
 import {store} from '../index'
 
@@ -14,7 +14,11 @@ class PostsList extends React.Component {
             isLoaded: false
         };
     }
-
+    
+    replyClick = (event) => {
+        this.props.posts.filter()
+    }
+    
     async componentDidMount() {
         let posts = await service.getAllPosts();
         this.props.getPosts(posts);
@@ -39,7 +43,7 @@ class PostsList extends React.Component {
                 <tbody>
                     {this.props.posts.map(post => {
                         const { id, userId, title } = post;
-                        return (<tr key={id} onClick={e => { this.props.history.push(`/post-info/${id}/${userId}`); }}>
+                        return (<tr key={id} onClick={this.props.posts.filter(event => event.target.id),this.props.getActivePost(),e => { this.props.history.push(`/post-info/${id}/${userId}`)}}>
                             <td>{id}</td>
                             <td>{userId}</td>
                             <td className='post-title'>{title}</td>
@@ -57,6 +61,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     getPosts: (posts) => {
         dispatch(getAllPosts(posts));
+    },
+    getPost: (activePost) => {
+        dispatch(getActivePost(activePost))
     }
 });
 
