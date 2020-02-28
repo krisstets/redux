@@ -15,8 +15,8 @@ class PostsList extends React.Component {
         };
     }
     
-    replyClick = (event) => {
-        this.props.posts.filter()
+    handleClick = (event) => {
+        this.props.posts.filter(post => post.id ===parseInt(event.target.id))
     }
     
     async componentDidMount() {
@@ -43,7 +43,7 @@ class PostsList extends React.Component {
                 <tbody>
                     {this.props.posts.map(post => {
                         const { id, userId, title } = post;
-                        return (<tr key={id} onClick={this.props.posts.filter(event => event.target.id),this.props.getActivePost(),e => { this.props.history.push(`/post-info/${id}/${userId}`)}}>
+                        return (<tr key={id} onClick={this.handleClick(event),this.props.getActivePost(),e => { this.props.history.push(`/post-info/${id}/${userId}`)}}>
                             <td>{id}</td>
                             <td>{userId}</td>
                             <td className='post-title'>{title}</td>
