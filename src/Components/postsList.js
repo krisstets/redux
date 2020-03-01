@@ -2,7 +2,7 @@ import React from 'react';
 import service from '../Service/service';
 import { getAllPosts, getActivePost } from '../Actions/postAction';
 import { connect } from "react-redux";
-import {store} from '../index'
+//import {store} from '../index'
 
 
 
@@ -16,14 +16,17 @@ class PostsList extends React.Component {
     }
     
     handleClick = (event) => {
-        this.props.posts.filter(post => post.id ===parseInt(event.target.id))
+        if (event.target.id) {
+            const activePost = this.props.posts.find(post => post.id === parseInt(event.target.id));
+            this.props.getActivePost(activePost);
+            this.props.history.push(`/post-info`);
+        }
     }
     
     async componentDidMount() {
         let posts = await service.getAllPosts();
         this.props.getPosts(posts);
         this.setState({ isLoaded: true });
-        console.log(store.getState())
     }
 
     render() {
@@ -43,10 +46,10 @@ class PostsList extends React.Component {
                 <tbody>
                     {this.props.posts.map(post => {
                         const { id, userId, title } = post;
-                        return (<tr key={id} onClick={this.handleClick(event),this.props.getActivePost(),e => { this.props.history.push(`/post-info/${id}/${userId}`)}}>
-                            <td>{id}</td>
-                            <td>{userId}</td>
-                            <td className='post-title'>{title}</td>
+                        return (<tr key={id} id={id} onClick={this.handleClick}>
+                            <td id={id}>{id}</td>
+                            <td id={id}>{userId}</td>
+                            <td className='post-title' id={id}>{title}</td>
                         </tr>);
                     })}
                 </tbody>
@@ -62,9 +65,12 @@ const mapDispatchToProps = dispatch => ({
     getPosts: (posts) => {
         dispatch(getAllPosts(posts));
     },
-    getPost: (activePost) => {
+    getActivePost: (activePost) => {
         dispatch(getActivePost(activePost))
     }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsList);
+
+
+/* ~~~~~~ */

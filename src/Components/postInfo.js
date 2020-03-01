@@ -11,25 +11,25 @@ import {connect} from 'react-redux';
     constructor(props) {
         super(props);
         this.state = {
-            isLoaded: false,
+            userInfo: null, 
+            isLoaded: false
         }
     }
 
     async componentDidMount() {
-        
         try {
-           
             const users = await service.getAllUsers();
+            const activeUser = users.find(user => parseInt(user.id) === parseInt(this.props.activePost.userId));
             this.props.getUsers(users);
             this.setState({
+                userInfo: activeUser,
                 isLoaded: true
             })
-           
         } catch(error) {
             throw new Error(error); 
         }
+        console.log(this.props.activePost)
     }
-   
     render() {
         let { isLoaded } = this.state;
         if(!isLoaded) {
@@ -40,12 +40,17 @@ import {connect} from 'react-redux';
                   <div className="card">
                         <h2>About Post:</h2> 
                         <p className='post-info'>
-                        
+                        {this.props.activePost.body}
                         </p>
                     </div>
                     <div className="card">
                         <h2>About User</h2>
-                        
+                        <ul className="user-info">
+                            <li><p>ID</p>{this.state.userInfo.id}</li>
+                            <li><p>Name</p>{this.state.userInfo.name}</li>
+                            <li><p>Username</p>{this.state.userInfo.username}</li>
+                            <li><p>Email</p>{this.state.userInfo.email}</li>
+                        </ul>
                     </div>  
                 </div>
              )
@@ -56,7 +61,7 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = state => ({
     users: state.usersRequestResults.users,
-    posts: state.postsRequestResults.posts
+    activePost: state.postsRequestResults.activePost
 });
 
 

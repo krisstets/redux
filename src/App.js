@@ -14,7 +14,7 @@ function App()  {
           <Nav/>
           <Switch>
               <Route path='/posts' component={PostsList}/>
-              <Route path='/post-info/:postId/:userId' component={PostInfo}/>
+              <Route path='/post-info' component={PostInfo}/>
 
           </Switch>
         </div>
