@@ -1,5 +1,4 @@
-import {SET_ALL_POSTS} from '../Actions/postAction';
-import {SET_ACTIVE_POST} from '../Actions/postAction';
+import {SET_ALL_POSTS, SET_ACTIVE_POST, FETCH_POSTS_REQUEST} from '../Actions/postAction';
 
 const initialState = {
     posts: [],
@@ -8,6 +7,10 @@ const initialState = {
 
 export function postsReducer(state = initialState, action) {
     switch(action.type) {
+        case FETCH_POSTS_REQUEST:
+            return {
+              ...state,
+            };
         case SET_ALL_POSTS:
             return {
                 ...state,

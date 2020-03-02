@@ -1,9 +1,9 @@
 import React from 'react';
-import service from '../Service/service';
-import { getAllPosts, getActivePost } from '../Actions/postAction';
+//import service from '../Service/service';
+import { getActivePost } from '../Actions/postAction';
 import { connect } from "react-redux";
 //import {store} from '../index'
-
+import { fetchPosts } from '../Middleware/getAllPosts' 
 
 
 class PostsList extends React.Component {
@@ -24,9 +24,11 @@ class PostsList extends React.Component {
     }
     
     async componentDidMount() {
-        let posts = await service.getAllPosts();
-        this.props.getPosts(posts);
+        fetchPosts();
+       /* let posts = await service.getAllPosts();
+        this.props.getPosts(posts);*/
         this.setState({ isLoaded: true });
+        console.log(this.props.posts)
     }
 
     render() {
@@ -62,11 +64,12 @@ const mapStateToProps = state => ({
     posts: state.postsRequestResults.posts
 });
 const mapDispatchToProps = dispatch => ({
-    getPosts: (posts) => {
-        dispatch(getAllPosts(posts));
-    },
+
     getActivePost: (activePost) => {
         dispatch(getActivePost(activePost))
+    },
+    fetchPosts: () => {
+        dispatch(fetchPosts())
     }
 });
 
