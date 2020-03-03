@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import service from '../Service/service';
+import {service} from '../Service/service';
 import {getAllUsers} from '../Actions/userAction';
 import {connect} from 'react-redux';
 //import {store} from '../index'

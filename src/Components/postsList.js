@@ -24,7 +24,7 @@ class PostsList extends React.Component {
     }
     
     async componentDidMount() {
-        fetchPosts();
+        this.props.fetchPosts(`https://jsonplaceholder.typicode.com/posts`);
        /* let posts = await service.getAllPosts();
         this.props.getPosts(posts);*/
         this.setState({ isLoaded: true });
@@ -68,8 +68,8 @@ const mapDispatchToProps = dispatch => ({
     getActivePost: (activePost) => {
         dispatch(getActivePost(activePost))
     },
-    fetchPosts: () => {
-        dispatch(fetchPosts())
+    fetchPosts: (url) => {
+        dispatch(fetchPosts(url))
     }
 });
 

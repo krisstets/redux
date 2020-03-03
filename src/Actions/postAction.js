@@ -3,9 +3,10 @@ export const SET_ACTIVE_POST = 'SET_ACTIVE_POSTS';
 export const AXIOS_POSTS_ERROR = 'AXIOS_POSTS_ERROR';
 export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST'
 
-export function fetchPostsRequest() {
+export function fetchPostsRequest(bool) {
     return {
       type: FETCH_POSTS_REQUEST,
+      payload: bool
     }
   }
 
@@ -23,9 +24,9 @@ export function getActivePost(activePost) {
     }
 }
 
-export function errorPostsAccess() {
+export function errorPostsAccess(bool) {
     return {
         type: AXIOS_POSTS_ERROR,
-        payload: undefined
+        payload: bool
     }
 }
