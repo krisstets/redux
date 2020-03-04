@@ -6,3 +6,4 @@ export function getAllUsers(data) {
         payload: data
     }
 }
+

@@ -1,4 +1,4 @@
-import {SET_ALL_POSTS, SET_ACTIVE_POST, FETCH_POSTS_REQUEST} from '../Actions/postAction';
+import {POSTS_REQUEST, POSTS_SUCCESS, POSTS_FAILURE} from '../Actions/postAction';
 
 const initialState = {
     posts: [],
@@ -7,16 +7,16 @@ const initialState = {
 
 export function postsReducer(state = initialState, action) {
     switch(action.type) {
-        case FETCH_POSTS_REQUEST:
+        case POSTS_REQUEST:
             return {
               ...state,
             };
-        case SET_ALL_POSTS:
+        case POSTS_SUCCESS:
             return {
                 ...state,
                 posts: action.payload
             };
-        case SET_ACTIVE_POST:
+        case POSTS_FAILURE:
             return {
                 ...state,
                 activePost: action.payload

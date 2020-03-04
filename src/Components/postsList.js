@@ -1,9 +1,9 @@
 import React from 'react';
 //import service from '../Service/service';
-import { getActivePost } from '../Actions/postAction';
+//import { getActivePost } from '../Actions/postAction';
 import { connect } from "react-redux";
 //import {store} from '../index'
-import { fetchPosts } from '../Middleware/getAllPosts' 
+import { fetchPosts } from '../Actions/postAction' 
 
 
 class PostsList extends React.Component {
@@ -24,7 +24,7 @@ class PostsList extends React.Component {
     }
     
     async componentDidMount() {
-        this.props.fetchPosts(`https://jsonplaceholder.typicode.com/posts`);
+        this.props.fetchData();
        /* let posts = await service.getAllPosts();
         this.props.getPosts(posts);*/
         this.setState({ isLoaded: true });
@@ -65,11 +65,11 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
 
-    getActivePost: (activePost) => {
+    /*getActivePost: (activePost) => {
         dispatch(getActivePost(activePost))
-    },
-    fetchPosts: (url) => {
-        dispatch(fetchPosts(url))
+    },*/
+    fetchData: () => {
+        dispatch(fetchPosts())
     }
 });
 
