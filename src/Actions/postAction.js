@@ -42,7 +42,7 @@ export const fetchPosts = () => (dispatch) => {
     return dispatch({
         [CALL_API]: {
             types: [POSTS_REQUEST, POSTS_SUCCESS, POSTS_FAILURE],
-            endpoint: `/posts`,
+            endpoint: `posts`,
             schema: Schemas.POST
         }
     })

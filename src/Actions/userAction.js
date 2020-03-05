@@ -8,7 +8,7 @@ export const fetchUser = () => (dispatch) => {
     return dispatch({
         [CALL_API]: {
             types: [USER_REQUEST, USER_SUCCESS, USER_FAILURE],
-            endpoint: `/post-info`
+            endpoint: `/user`
         }
     })
 }

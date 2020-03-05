@@ -19,7 +19,7 @@ export function postsReducer(state = initialState, action) {
         case POSTS_FAILURE:
             return {
                 ...state,
-                activePost: action.payload
+                posts: undefined
             };
         default:
             return state;

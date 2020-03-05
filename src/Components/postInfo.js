@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import {service} from '../Service/service';
+//import {service} from '../Service/service';
 //import {getAllUsers} from '../Actions/userAction';
 import {connect} from 'react-redux';
 //import {store} from '../index'
@@ -16,7 +16,7 @@ import {connect} from 'react-redux';
         }
     }
 
-    async componentDidMount() {
+   /* async componentDidMount() {
         try {
             const users = await service.getAllUsers();
             const activeUser = users.find(user => parseInt(user.id) === parseInt(this.props.activePost.userId));
@@ -29,7 +29,7 @@ import {connect} from 'react-redux';
             throw new Error(error); 
         }
         console.log(this.props.activePost)
-    }
+    }*/
     render() {
         let { isLoaded } = this.state;
         if(!isLoaded) {
