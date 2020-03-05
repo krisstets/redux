@@ -30,7 +30,7 @@ export function errorPostsAccess(bool) {
         payload: bool
     }
 }*/
-import {CALL_API} from '../Middleware/getAllPosts'
+import {CALL_API, Schemas} from '../Middleware/api'
 
 
 export const POSTS_REQUEST = 'POSTS_REQUEST';
@@ -42,7 +42,8 @@ export const fetchPosts = () => (dispatch) => {
     return dispatch({
         [CALL_API]: {
             types: [POSTS_REQUEST, POSTS_SUCCESS, POSTS_FAILURE],
-            endpoint: `posts/`
+            endpoint: `/posts`,
+            schema: Schemas.POST
         }
     })
 }

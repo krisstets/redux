@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import {service} from '../Service/service';
-import {getAllUsers} from '../Actions/userAction';
+//import {getAllUsers} from '../Actions/userAction';
 import {connect} from 'react-redux';
 //import {store} from '../index'
 
@@ -66,9 +66,9 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-    getUsers: (users) => {
+  /*  getUsers: (users) => {
         dispatch(getAllUsers(users));
-    }
+    }*/
 });
 
 

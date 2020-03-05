@@ -1,9 +1,14 @@
-export const  SET_ALL_USERS = 'SET_ALL_USERS';
+import {CALL_API} from '../Middleware/api';
 
-export function getAllUsers(data) {
-    return {
-        type: SET_ALL_USERS,
-        payload: data
-    }
+export const USER_REQUEST = 'USER_REQUEST';
+export const USER_SUCCESS = 'USER_SUCCESS';
+export const USER_FAILURE = 'USER_FAILURE';
+
+export const fetchUser = () => (dispatch) => {
+    return dispatch({
+        [CALL_API]: {
+            types: [USER_REQUEST, USER_SUCCESS, USER_FAILURE],
+            endpoint: `/post-info`
+        }
+    })
 }
-
