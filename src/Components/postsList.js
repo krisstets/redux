@@ -1,9 +1,6 @@
 import React from 'react';
-//import service from '../Service/service';
-//import { getActivePost } from '../Actions/postAction';
 import { connect } from "react-redux";
-//import {store} from '../index'
-import { fetchPosts } from '../Actions/postAction' 
+import { fetchPosts, getActivePost } from '../Actions/postAction' 
 
 
 class PostsList extends React.Component {
@@ -25,8 +22,6 @@ class PostsList extends React.Component {
     
     async componentDidMount() {
         this.props.fetchData();
-       /* let posts = await service.getAllPosts();
-        this.props.getPosts(posts);*/
         this.setState({ isLoaded: true });
         console.log(this.props.posts)
     }
@@ -65,9 +60,9 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
 
-    /*getActivePost: (activePost) => {
+    getActivePost: (activePost) => {
         dispatch(getActivePost(activePost))
-    },*/
+    },
     fetchData: () => {
         dispatch(fetchPosts())
     }

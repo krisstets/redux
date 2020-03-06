@@ -1,8 +1,7 @@
 import {POSTS_REQUEST, POSTS_SUCCESS, POSTS_FAILURE} from '../Actions/postAction';
 
 const initialState = {
-    posts: [],
-    activePost: {}
+    posts: []
 };
 
 export function postsReducer(state = initialState, action) {

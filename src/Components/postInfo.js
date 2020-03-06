@@ -1,9 +1,7 @@
 import React from 'react';
 import './style.css';
-//import {service} from '../Service/service';
-//import {getAllUsers} from '../Actions/userAction';
+import {fetchUser} from '../Actions/userAction';
 import {connect} from 'react-redux';
-//import {store} from '../index'
 
 
  class PostInfo extends React.Component {
@@ -16,20 +14,14 @@ import {connect} from 'react-redux';
         }
     }
 
-   /* async componentDidMount() {
-        try {
-            const users = await service.getAllUsers();
-            const activeUser = users.find(user => parseInt(user.id) === parseInt(this.props.activePost.userId));
-            this.props.getUsers(users);
-            this.setState({
-                userInfo: activeUser,
-                isLoaded: true
-            })
-        } catch(error) {
-            throw new Error(error); 
-        }
-        console.log(this.props.activePost)
-    }*/
+    componentDidMount() {
+      const users = this.props.getUsers();
+      const activeUser = users.find(user => parseInt(user.id) === parseInt(this.props.activePost.userId));
+      this.setState({
+          userInfo: activeUser,
+          isLoaded: true
+      })
+    }
     render() {
         let { isLoaded } = this.state;
         if(!isLoaded) {
@@ -66,9 +58,9 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  /*  getUsers: (users) => {
-        dispatch(getAllUsers(users));
-    }*/
+   getUsers: () => {
+        dispatch(fetchUser());
+    }
 });
 
 
